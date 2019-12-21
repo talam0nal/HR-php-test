@@ -20,14 +20,17 @@ class WeatherController extends Controller
     */
     public function show()
     {
-        $weather = 1;
         $headers = ['X-Yandex-API-Key' => $this->key];
         $client = new Client(['headers' => $headers]);
         $params = '?lat='.$this->lat.'&lon='.$this->lon;
         $response = $client->get($this->apiURL.$params);
         $data = json_decode($response->getBody());
-        dd($data->fact->temp);
-        return view('weather', compact('weather'));
+        $temperature = $data->fact->temp;
+        if ($temperature > 0) {
+            $temperature = '+'.$data->fact->temp;
+        }
+        dd($temperature);
+        return view('weather', compact('temperature'));
     }
 
 }
