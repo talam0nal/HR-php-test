@@ -40,7 +40,9 @@
                             </td>
 
                             <td>
-                                Наименование состава заказа
+                                @foreach ($order->products as $product)
+                                    {{ $product->name }}<br>
+                                @endforeach
                             </td>
 
                             <td>
@@ -55,6 +57,7 @@
                         </tr>
                     @endforeach
                 </table>
+                {{ $orders->links() }}
             </div>
         </div>
     </div>

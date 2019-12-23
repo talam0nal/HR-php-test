@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\OrderProduct;
+use App\{Product, OrderProduct};
 
 class Order extends Model
 {
@@ -47,5 +47,18 @@ class Order extends Model
             $price += $item->price * $item->quantity;
         }
         return $price;
+    }
+
+    /**
+     * Возвращает список продуктов для заказа
+    */
+    public static function getProducts($order_id)
+    {
+        $items = OrderProduct::where('order_id', $order_id)->get();
+        $products = [];
+        foreach ($items as $item) {
+            $products[] = Product::findOrFail($item->product_id);
+        }
+        return $products;
     }
 }
