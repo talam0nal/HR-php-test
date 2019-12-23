@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-lg-5">
-                <form>
+                <form action="{{ route('orders.update', $item->id) }}" method="POST">
+                    {{ method_field('PUT') }}
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="exampleInputEmail1">
@@ -19,16 +20,16 @@
                         </label>
                         <select class="form-control" name="partner_id" id="partner">
                             @foreach ($partners as $partner)
-                                <option value="{{ $partner->id }}">{{ $partner->name }}</option>
+                                <option value="{{ $partner->id }}" @if ($partner->id == $item->partner_id) selected @endif>{{ $partner->name }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="partner">
+                        <label for="status">
                             Статус заказа
                         </label>
-                        <select class="form-control" name="status" id="partner">
+                        <select class="form-control" name="status" id="status">
                             <option value="0">Новый</option>
                             <option value="10">Подверждён</option>
                             <option value="20">Завершён</option>
@@ -39,7 +40,7 @@
                         Общая стоимость заказа: <b>{{ $price }} ₽</b>
                     </div>
 
-                    <button type="button" class="btn btn-success">
+                    <button type="submit" class="btn btn-success">
                         Сохранить
                     </button>
 

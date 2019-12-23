@@ -40,6 +40,7 @@ class OrderController extends Controller
         $order->partner_id = request()->partner_id;
         $order->status = request()->status;
         $order->save();
+        return back();
     }
 
 }
