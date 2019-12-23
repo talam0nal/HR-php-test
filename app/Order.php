@@ -21,7 +21,7 @@ class Order extends Model
     /**
      * Возвращает статус заказа в текстовом представлении
     */
-    public static function getStatusText($status) : string
+    public static function getStatusText(int $status) : string
     {
         switch ($status) {
             case 0:
