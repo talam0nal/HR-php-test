@@ -11,4 +11,9 @@ class Order extends Model
     	'partner_id',
     	'status',
     ];
+
+    public function partner()
+    {
+        return $this->belongsTo('App\Partner');
+    }    
 }
