@@ -16,6 +16,7 @@ class OrderController extends Controller
         $orders = Order::get();
         foreach ($orders as $order) {
             $order->status_text = Order::getStatusText($order->status);
+            $order->price = Order::getPrice($order->id);
         }
         return view('orders', compact('orders'));
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\OrderProduct;
 
 class Order extends Model
 {
@@ -17,6 +18,9 @@ class Order extends Model
         return $this->belongsTo('App\Partner');
     }
 
+    /**
+     * Возвращает статус заказа в текстовом представлении
+    */
     public static function getStatusText($status) : string
     {
         switch ($status) {
@@ -30,5 +34,18 @@ class Order extends Model
                 return 'Завершён';
                 break;
         }
+    }
+
+    /**
+     * Возвращает стоимость заказа
+    */
+    public static function getPrice($order_id) : int
+    {
+        $items = OrderProduct::where('order_id', $order_id)->get();
+        $price = 0;
+        foreach ($items as $item) {
+            $price += $item->price * $item->quantity;
+        }
+        return $price;
     }
 }
