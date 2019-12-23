@@ -44,7 +44,7 @@
                             </td>
 
                             <td>
-                                Статус заказа
+                                {{ $order->status_text }}
                             </td>
 
                             <td>

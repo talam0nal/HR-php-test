@@ -14,6 +14,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::get();
+        foreach ($orders as $order) {
+            $order->status_text = Order::getStatusText($order->status);
+        }
         return view('orders', compact('orders'));
     }
 
