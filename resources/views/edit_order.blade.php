@@ -61,7 +61,7 @@
                         </label>
                         <select class="form-control" name="status" id="status">
                             <option value="0" @if ($item->status == 0) selected @endif>Новый</option>
-                            <option value="10" @if ($item->status == 10) selected @endif>Подверждён</option>
+                            <option value="10" @if ($item->status == 10) selected @endif>Подтверждён</option>
                             <option value="20" @if ($item->status == 20) selected @endif>Завершён</option>
                         </select>
                     </div>
