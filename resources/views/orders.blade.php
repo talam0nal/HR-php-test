@@ -50,7 +50,7 @@
                             </td>
 
                             <td>
-                                <a href="#" target="_blank">
+                                <a href="{{ route('orders.edit', $order->id) }}" target="_blank">
                                     Редактировать
                                 </a>
                             </td>
