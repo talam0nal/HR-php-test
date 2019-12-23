@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\{Order, Partner};
+use App\{Order, OrderProduct, Partner};
 
 class OrderController extends Controller
 {
@@ -30,7 +30,11 @@ class OrderController extends Controller
         $item = Order::findOrFail($id);
         $partners = Partner::get();
         $price = Order::getPrice($id);
-        return view('edit_order', compact('item', 'partners', 'price'));
+        $products = Order::getProducts($id);
+        foreach ($products as $product) {
+            $product->quantity = OrderProduct::where('product_id', $product->id)->where('order_id', $id)->pluck('quantity')->first();
+        }
+        return view('edit_order', compact('item', 'partners', 'price', 'products'));
     }
 
     public function update($id)

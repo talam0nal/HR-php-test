@@ -26,13 +26,43 @@
                     </div>
 
                     <div class="form-group">
+                        <b>
+                            Продукты
+                        </b>                        
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Наименование
+                                </th>
+
+                                <th>
+                                    Количество
+                                </th>
+                            </tr>
+
+                            @foreach ($products as $product)
+                            <tr>
+                                <th>
+                                    {{ $product->name }}
+                                </th>
+
+                                <th>
+                                    {{ $product->quantity }}
+                                </th>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+
+
+                    <div class="form-group">
                         <label for="status">
                             Статус заказа
                         </label>
                         <select class="form-control" name="status" id="status">
-                            <option value="0">Новый</option>
-                            <option value="10">Подверждён</option>
-                            <option value="20">Завершён</option>
+                            <option value="0" @if ($item->status == 0) selected @endif>Новый</option>
+                            <option value="10" @if ($item->status == 10) selected @endif>Подверждён</option>
+                            <option value="20" @if ($item->status == 20) selected @endif>Завершён</option>
                         </select>
                     </div>
 
