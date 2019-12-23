@@ -27,9 +27,8 @@ class WeatherController extends Controller
         $data = json_decode($response->getBody());
         $temperature = $data->fact->temp;
         if ($temperature > 0) {
-            $temperature = '+'.$data->fact->temp;
+            $temperature = '+'.$temperature;
         }
-        dd($temperature);
         return view('weather', compact('temperature'));
     }
 
